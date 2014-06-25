@@ -78,6 +78,7 @@ func (p *execProcess) Start() error {
 	cmdString := strings.Join(p.cmd.Args, " ")
 	p.logger.Debug(execProcessLogTag, "Running command: %s", cmdString)
 
+	//TODO: this dosen't work on Windows
 	//p.cmd.SysProcAttr = &syscall.SysProcAttr{Setpgid: true}
 
 	err := p.cmd.Start()
@@ -194,6 +195,8 @@ func (p *execProcess) TerminateNicely(killGracePeriod time.Duration) error {
 
 // signalGroup does not return an error if the process group does not exist
 func (p *execProcess) signalGroup(sig syscall.Signal) error {
+	//TODO: this dosen't work on Windows
+
 	//err := syscall.Kill(-p.pid, sig)
 	//if p.isGroupDoesNotExistError(err) {
 	//	return nil
@@ -202,6 +205,8 @@ func (p *execProcess) signalGroup(sig syscall.Signal) error {
 }
 
 func (p *execProcess) groupExists() bool {
+	//TODO: this dosen't work on Windows
+
 	//err := syscall.Kill(-p.pid, syscall.Signal(0))
 	//if p.isGroupDoesNotExistError(err) {
 	//	return false

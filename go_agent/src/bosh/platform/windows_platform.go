@@ -15,10 +15,6 @@ import (
 	boshdir "bosh/settings/directories"
 	boshdirs "bosh/settings/directories"
 	boshsys "bosh/system"
-	///////////////////////////////////////////
-	//boshtask "bosh/agent/task"
-	faketask "bosh/agent/task/fakes"
-	fakeuuid "bosh/uuid/fakes"
 )
 
 type windowsPlatform struct {
@@ -49,27 +45,6 @@ func NewWindowsPlatform(
 		dirProvider:   boshdir.NewDirectoriesProvider("C:/"),
 		vitalsService: boshvitals.NewService(collector, dirProvider),
 	}
-}
-
-func GenerateFakeTask() {
-	var (
-		uuidGen *fakeuuid.FakeGenerator
-		service *faketask.FakeService
-	)
-
-	ranFunc := false
-	runFunc := func() (interface{}, error) { ranFunc = true; return nil, nil }
-
-	task := service.CreateTaskWithID("fake-task-id", runFunc, nil, nil)
-
-	//var (
-	//	taskService *faketask.FakeService
-	//)
-	//taskService.StartedTasks["fake-task-id"] = boshtask.Task{
-	//	ID:    "fake-task-id",
-	//	State: "running",
-	//	Value: "some-task-value",
-	//}
 }
 
 func (p windowsPlatform) GetFs() (fs boshsys.FileSystem) {
