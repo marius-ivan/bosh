@@ -50,7 +50,6 @@ func NewWindowsPlatform(
 func (p windowsPlatform) GetFs() (fs boshsys.FileSystem) {
 	fmt.Printf("Get FS\n")
 	//fmt.Printf(p.dirProvider.BoshDir())
-	GenerateFakeTask()
 	return p.fs
 }
 

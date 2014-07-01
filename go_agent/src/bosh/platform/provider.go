@@ -104,6 +104,7 @@ func NewProvider(logger boshlog.Logger, dirProvider boshdirs.DirectoriesProvider
 		"ubuntu": ubuntu,
 		"centos": centos,
 		"dummy":  NewDummyPlatform(sigarCollector, fs, runner, dirProvider, logger),
+		"windows":  NewWindowsPlatform(sigarCollector, fs, runner, dirProvider, logger)
 	}
 	return
 }
